@@ -10,7 +10,8 @@ import {
 function TasksApp(){
 const [num1,setNum1] = useState();
 const [num2,setNum2] = useState();
-const [answer,setAnswer] = useState(0)
+const [answer,setAnswer] = useState("")
+
 
 const Add = ()=> {
   let ans = 0
@@ -24,13 +25,39 @@ const Subtract = ()=> {
 }
 const Divide =  ()=> {
   let ans = 0
+  Number1 = Number(num1)
+  Number2 = Number(num2)
+
+  if( Number1 == 0 || Number2 == 0){
+    setAnswer ("Cannot divide by 0")
+
+  }else {
   ans = Number(num1) / Number(num2)
   setAnswer(ans);
+
+  }
+
 }
 const Multiply = ()=> {
   let ans = 0
   ans = Number(num1) * Number(num2)
   setAnswer(ans);
+}
+
+const Sqrt = () => {
+  let ans = 0
+  ans = Math.sqrt( Number(num1), Number(num2) )
+  setAnswer(ans)
+
+}
+
+const pow = () => {
+
+let ans = 0
+  ans = Math.pow( Number(num1), Number(num2) )
+  setAnswer(ans)
+
+
 }
 
 return(
@@ -61,6 +88,10 @@ return(
     <TouchableOpacity style={Styles.addButton} onPress={Subtract}>
       <Text>-</Text>
     </TouchableOpacity>
+
+    <TouchableOpacity style={Styles.addButton} onPress = {Sqrt}>
+      <Text>√</Text>
+    </TouchableOpacity>
    
     </View>
 
@@ -72,10 +103,19 @@ return(
     <TouchableOpacity style={Styles.addButton} onPress = {Divide}>
       <Text>/</Text>
     </TouchableOpacity>
+
+      <TouchableOpacity style={Styles.addButton} onPress = {pow}>
+      <Text>^</Text>
+    </TouchableOpacity>
+
+ 
+    
     
     </View>
     <View style={Styles.tasksContainer}>
-      <Text style = {Styles.heading}>Answer: {answer}</Text>
+      <Text style = {Styles.heading}>Answer: {answer}
+      
+      </Text>
     </View>
 
   </View>
